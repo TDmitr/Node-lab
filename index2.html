@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="static/js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="static/js/bootstrap.js"></script>
   
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
@@ -28,10 +28,12 @@ let socket = new WebSocket('ws://127.0.0.1/');
   socket.onmessage = (event) => {
   	console.log(event.data);
   	let change = JSON.parse(event.data);
+  	
   	let ingridients = [change.bread, change.meat];
+
   	change.sauces.map((elem)=>ingridients.push(elem)).join("");
   	change.misk.map((elem)=>ingridients.push(elem)).join("");
-  	console.log(ingridients);
+
   	let all = ingridients.map((elem)=>elem).join(", ");
 
 	  $('.list-group').append(`<div class="col-md-4">
