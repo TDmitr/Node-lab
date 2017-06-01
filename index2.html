@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="static/js/bootstrap.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+<h1>Your burgers</h1>
+
+
+<div class="row list-group">
+	<!-- <div class="col-md-4">
+	  <div class="list-group-item">
+	    <h3 class="list-group-item-heading">Header</h3>
+	    <p class="list-group-item-text">text</p>
+	  </div>
+	</div> -->
+
+ </div>
+
+<script>
+
+let socket = new WebSocket('ws://127.0.0.1/');
+
+  socket.onmessage = (event) => {
+  	console.log(event.data);
+  	let change = JSON.parse(event.data);
+  	let ingridients = [change.bread, change.meat];
+  	change.sauces.map((elem)=>ingridients.push(elem)).join("");
+  	change.misk.map((elem)=>ingridients.push(elem)).join("");
+  	console.log(ingridients);
+  	let all = ingridients.map((elem)=>elem).join(", ");
+
+	  $('.list-group').append(`<div class="col-md-4">
+		  <div class="list-group-item">
+		    <h3 class="list-group-item-heading">Burger '${change.name}'</h3>
+		    <p class="list-group-item-text">${all}</p>
+		  </div>
+		</div>`)
+	  };
+
+</script>
+</body>
+</html>

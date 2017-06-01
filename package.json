@@ -1,0 +1,12 @@
+{
+  "name": "chatExample",
+  "style": ["bootstrap.css","style.css"],
+  "version": "0.1.0",
+  "author": "Tania Dmitrenko",
+  "description": "Websocket Chat Example",
+  "license": "MIT",
+  "dependencies": {
+    "websocket": "1.0.x"
+  },
+  "readmeFilename": "README.md"
+}

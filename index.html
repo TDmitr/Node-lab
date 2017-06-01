@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="static/js/bootstrap.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+ 
+</head>
+<body>
+
+<div class="row">
+  <div class="col-md-7">
+    <h1>Burger Constructor</h1>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#bread">Bread Type</a></li>
+        <li><a data-toggle="tab" href="#meat">Meat Type</a></li>
+        <li><a data-toggle="tab" href="#sauces">Sauces</a></li>
+        <li><a data-toggle="tab" href="#misk">Other</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="bread" class="tab-pane fade in active">
+
+      </div>
+
+      <div id="meat" class="tab-pane fade">
+
+      </div>
+
+      <div id="sauces" class="tab-pane fade">
+
+      </div>
+
+      <div id="misk" class="tab-pane fade">
+
+      </div>
+    </div>
+    <br>
+    <div id="messagePanel"></div>
+  </div>
+  <div class="col-md-4">
+    <h2>Choosen burger</h2>
+
+    <div class="row">
+      <div class="col-md-9 col-md-offset-3">
+        <input id="nameField" class="form-control" type="text" placeholder="Name of your burger">
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+      <dt>Bun: </dt><dd id="choosenbread"></dd>
+      <dt>Meat: </dt><dd id="choosenmeat"></dd>
+      <dt>Sauces: </dt><dd id="choosensauces"></dd>
+      <dt>Other ingridients: </dt><dd id="choosenmisk"></dd>
+    </dl>
+    <button type="button" class="btn btn-success" onclick="checkAll()">Add burger</button>
+  </div>
+</div>
+
+
+ <script type="text/javascript" src="static/js/script.js"></script>
+<script>
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+.col-md-4{padding-top: 20px;}
+.col-md-4 button {float: right;}
+.col-md-4 * {padding-top: 10px;}
+body{padding: 10px;}
+body * {box-sizing: border-box;}
+.row{margin: 0 !important;}
+h1{color: #dc1c1c !important;}
+.tab-pane{padding: 15px;}
+.tab-content{min-height: 250px; border: 1px solid rgba(51, 51, 51, 0.21); border-top-width:0; }
+.btn-primary{
+	margin: 10px !important;
+	padding: 10px 15px;
+	border-radius: 0;
+	background-color: white;
+	border: 1px solid rgba(51, 51, 51, 0.21);
+	color: #641818;
+}
+#choosenmisk{min-height: 50px;}
+.list-group-item {min-height: 150px;}
