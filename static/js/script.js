@@ -9,26 +9,46 @@ var burger = {
     bread: "None",
 	meat: "None",
 	sauces: [],
-	misk: []
+	misk: [],
+	checktype: function(type){return this[type];}
 };
 
-function showMessage(message){
-	$('#messagePanel').append(`<div class="alert alert-warning">${message}</div>`);
-}
-function showSuccessfulMessage(){
-	$('#messagePanel').append(`<div class="alert alert-success"> Your burger is successfully sent</div>`);
+var elements = {
+	message: '#messagePanel',
+	choose: '#choosen',
+	name: '#nameField'
 }
 
-function addIngridients(elem,arg,type){
+var message ={
+	nameError: "Name is mandatory",
+	meatError: "Meat is not chosen. Burger is not tasty without meat :(",
+	breadError: "Bun is not chosen. Burger is not burger without bread :(",
+	ok: "Your burger is successfully sent :)",
+	error: function(type){
+		$(elements.message).append(`<div class="alert alert-warning">${this[type]}</div>`);
+	},
+	success: function(){
+		$(elements.message).append(`<div class="alert alert-success">${this.ok}</div>`);
+	}
+}
+
+function deleteElem(arr,value){
+	for (var i = 0; i < arr.length; i++) { 
+		if(arr[i] == value) arr.splice(i,1);
+	}
+}
+
+
+function addIngridients(elem,arg,type) {
     let div = document.createElement('div');
-    $(div).addClass('btn-group');
-    $(div).attr("data-toggle", "buttons");
-    if(type=="radio"){
+    $(div).addClass('btn-group').attr("data-toggle", "buttons");
+
+    if(type=="radio") {
       div.innerHTML += arg.map(
       (div)=>`<label class="btn btn-primary" onclick="addRadio('${elem}',this)"><input type="radio" name="options">${div}</label>`
       ).join("") ;
     }
-    if(type=="checkbox"){
+    if(type=="checkbox") {
       div.innerHTML += arg.map(
       (div)=>`<label class="btn btn-primary" onclick="addCheckbox('${elem}',this)"><input type="checkbox">${div}</label>`
       ).join("") ;
@@ -37,35 +57,25 @@ function addIngridients(elem,arg,type){
   $('#'+elem).append(div);
 }
 
+
 function addRadio(type,elem){
-	if(type == "meat") burger.meat = $(elem).text();
-	if(type == "bread") burger.bread = $(elem).text();
-	var panel = "#choosen" + type;
-	$(panel).text($(elem).text());
+	(type=="meat") ? burger.meat = $(elem).text() : burger.bread = $(elem).text();
+	$(elements.choose + type).text($(elem).text());
 }
+
 
 function addCheckbox(type,elem){
 	var newElem = $(elem).text();
+	var list = burger.checktype(type);
 
-	var burgerType;
-	if(type=="sauces") burgerType = burger.sauces; 
-	if(type=="misk") burgerType = burger.misk;  
+	(elem.classList.contains('active')) ? deleteElem(list,newElem) : list.push(newElem);
 
-	if(elem.classList.contains('active')){
-        for (var i = 0; i < burgerType.length; i++) { 
-    		if(burgerType[i] == newElem) burgerType.splice(i,1);
-    	}
-    }
-    else {
-    	burgerType.push(newElem);
-    }
-    var panel = "#choosen" + type;
-    $(panel).text(burgerType.map((elem)=>elem).join(", "));
+    $(elements.choose + type).text(burger.checktype(type).join(", "));
 }
 
-$('#nameField').blur(function(event){
+
+$(elements.name).blur(function(event){
 	burger.name = event.target.value;
-	console.log(burger.name);
 });
 
 
